@@ -1,5 +1,7 @@
+import { default_token } from 'token';
+
 const Discord = require('discord.js');
-const token = 'NjU0MTAwNjM1MTg4MzMwNTI2.XfApCA.Kt6VeaiT_NGcjZtQMbF825dKPko';
+const token = default_token;
 const bot_client = new Discord.Client();
 
 bot_client.on('ready', () => {
