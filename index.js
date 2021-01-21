@@ -22,8 +22,16 @@ bot_client.on('message', msg => {
     if (msg.content === '!delete' &&
         msg.author.tag === 'TheToster#3003'
     ) {
-        msg.channel.bulkDelete(10);
+        try {
+            msg.channel.bulkDelete(10)
+                .then(reply =>
+                    reply.delete(3000));
+        } catch (error) {
+            console.error;
+        }
     }
+
+    if (msg.content === '!ping') msg.reply('Pong!');
 });
 
 bot_client.login(config.token);
