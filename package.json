@@ -4,7 +4,8 @@
   "description": "Bot for Tosterownia, a Discord server.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "pm2 start index.js -l logs/all.log -e logs/error.log -o logs/output.log --watch --ignore-watch=\"node_modules\" --time"
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,7 @@
   },
   "homepage": "https://github.com/tosterakakwapisz/discord-bot#readme",
   "dependencies": {
-    "discord.js": "^11.5.1"
+    "discord.js": "^11.5.1",
+    "pm2": "^4.5.1"
   }
 }
