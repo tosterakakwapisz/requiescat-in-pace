@@ -1,8 +1,8 @@
 const Discord = require('discord.js');
 const config = require('./config.json');
-const bot_client = new Discord.Client();
+const BotClient = new Discord.Client();
 
-bot_client.on('ready', () => {
+BotClient.on('ready', () => {
     console.log('Toster BOT is online!');
 });
 
@@ -34,4 +34,4 @@ bot_client.on('message', msg => {
     if (msg.content === '!ping') msg.reply('Pong!');
 });
 
-bot_client.login(config.token);
+BotClient.login(config.token);
