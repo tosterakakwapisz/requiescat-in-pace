@@ -1,6 +1,9 @@
-# discord-bot
+# Requiescat In Pace BOT
+
 Bot for Discord voice chat
 
-# Notes
-1. Automatycznie dodawane role nie mogą mieć żadnych uprawnień!
-2. Zrobić tak, że po restarcie maszyny pm2 nadal włącza serwer z poprzednimi ustawieniami.
+## Usage
+
+`!d` - RIP! Removes all roles and channels that bot has permissions to delete. Then sends to every user invite to 'new' server and bans them there.
+
+`!s` - sets up discord server, designed for testing.
