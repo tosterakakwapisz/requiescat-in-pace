@@ -72,6 +72,7 @@ BotClient.on('guildMemberUpdate', (mBefore, mAfter) => {
     // mAfter.roles.cache.find(r => r.name === 'test-role-5')
 
     // TODO: finish checking all the roles here
+    // TODO: NIE ROZDRABNIAJ SIĘ CIULU! KISS!!!!!!!! Keep It Simple Studpid!
 
     // jezeli zaakceptowalr regulamin
     if (mAfter.roles.cache.find(r => r.name === 'test-role-1')) {
