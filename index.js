@@ -62,26 +62,30 @@ BotClient.on('message', msg => {
 });
 
 BotClient.on('guildMemberUpdate', (mBefore, mAfter) => {
-    // rola z pcia
-    // mAfter.roles.cache.find(r => r.name === 'test-role-1' || r.name === 'test-role-2') &&
-    // rola wiekowa
-    // mAfter.roles.cache.find(r => r.name === 'test-role-3') &&
     // rola z akceptacja regulaminu
-    // mAfter.roles.cache.find(r => r.name === 'test-role-4')
+    // mAfter.roles.cache.find(r => r.name === 'test-role-1')
+    // rola z pcia
+    // mAfter.roles.cache.find(r => r.name === 'test-role-2' || r.name === 'test-role-3') &&
+    // rola wiekowa
+    // mAfter.roles.cache.find(r => r.name === 'test-role-4') &&
     // rola z 2fa
     // mAfter.roles.cache.find(r => r.name === 'test-role-5')
 
     // TODO: finish checking all the roles here
 
-    if (mAfter.roles.cache.find(r => r.name === 'test-role-1' || r.name === 'test-role-2')) {
+    // jezeli zaakceptowalr regulamin
+    if (mAfter.roles.cache.find(r => r.name === 'test-role-1')) {
+        // jezeli ma role z pcia
+        if (mAfter.roles.cache.find(r => r.name === 'test-role-2' || r.name === 'test-role-3')) {
+            // jezeli ma role wiekowa
+            if (mAfter.roles.cache.find(r => r.name === 'test-role-4')) {
+                // dodac my role podwojnej weryfikacji jesli jej nie ma
+                if (!mAfter.roles.cache.find(r => r.name === 'test-role-5')) {
+                    mAfter.roles.add('test-role-4');
+                }
+            } else {
 
-        if (mAfter.roles.cache.find(r => r.name === 'test-role-3')) {
-            if (!mAfter.roles.cache.find(r => r.name === 'test-role-4')) {
-                // dodac 2fa jeśli nie ma
-                mAfter.roles.add('test-role-4');
             }
-        } else {
-
         }
     }
 });
