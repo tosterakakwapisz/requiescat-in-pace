@@ -61,4 +61,8 @@ BotClient.on('message', msg => {
     };
 });
 
+BotClient.on('guildMemberUpdate', member => {
+    console.log(member);
+});
+
 BotClient.login(config.token);
