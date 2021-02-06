@@ -1,7 +1,7 @@
 {
-  "name": "discord-bot",
-  "version": "1.0.0",
-  "description": "Bot for Tosterownia, a Discord server.",
+  "name": "requiescat-in-pace",
+  "version": "0.0.2",
+  "description": "Bot for very bad servers.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
