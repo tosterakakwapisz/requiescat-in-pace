@@ -18,7 +18,12 @@
   },
   "homepage": "https://github.com/tosterakakwapisz/discord-bot#readme",
   "dependencies": {
-    "discord.js": "^12.5.3",
-    "pm2": "^4.5.5"
+    "axios": ">=0.21.2",
+    "discord.js": "^13.1.0",
+    "glob-parent": ">=5.1.2",
+    "netmask": ">=2.0.1",
+    "pac-resolver": ">=5.0.0",
+    "pm2": "^5.1.1",
+    "ws": ">=7.4.6"
   }
 }
