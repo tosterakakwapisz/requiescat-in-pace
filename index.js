@@ -1,9 +1,10 @@
-const Discord = require('discord.js');
-const config = require('./config.json');
-const BotClient = new Discord.Client({
-    fetchAllMembers: true
+import { Client, Intents } from 'discord.js';
+import dotenv from 'dotenv';
+const BotClient = new Client({
+    intents: [Intents.FLAGS.GUILDS]
 });
 
+dotenv.config();
 BotClient.on('ready', () => {
     console.log('Czas coś rozjebać');
 });
@@ -34,4 +35,4 @@ BotClient.on('message', msg => {
     };
 });
 
-BotClient.login(config.token);
+BotClient.login(process.env.TOKEN);
