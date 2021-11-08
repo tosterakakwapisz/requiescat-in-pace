@@ -1,6 +1,24 @@
 # Requiescat In Pace BOT
 
-Bot for Discord voice chat
+Clears bowel movements of discord server <3
+
+## Requirements
+
+- packages: `pm2` (globally), `npm` with `nodejs`
+
+## How to use (for dummies)
+
+### Linux
+
+- run `cp default.env .env`
+- paste discord token to copied `.env` file
+- run `npm i`
+
+### Windows
+
+- copy `default.env` and rename to `.env`
+- paste discord token to copied `.env` file
+- run `npm i`
 
 ## Usage
 
