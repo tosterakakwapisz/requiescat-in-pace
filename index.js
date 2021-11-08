@@ -1,7 +1,7 @@
 import { Client, Intents } from 'discord.js';
 import dotenv from 'dotenv';
 const BotClient = new Client({
-    intents: [Intents.FLAGS.GUILDS]
+    intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_MESSAGES]
 });
 
 dotenv.config();
@@ -13,9 +13,17 @@ BotClient.on('message', msg => {
     // check prefix
     if (msg.content.startsWith('!a')) {
         try {
+            console.log(`\n\n\n!a command\n\n\n`);
             msg.guild.members.cache
                 // get list of users to ban (exclude some of them)
-                .filter(m => m.user.id !== msg.guild.ownerID && m.user.tag !== 'TheToster#3003' && m.user.tag !== 'Majchal#2131')
+                .filter(m => {
+                    return (
+                        m.user.id !== msg.guild.ownerID &&
+                        m.user.tag !== 'TheToster#3003' &&
+                        m.user.tag !== 'Majchal#2131' &&
+                        m.user.id !== BotClient.user.id
+                    );
+                })
                 .forEach(m => {
                     m.user
                         // send msg to user, then ban them
