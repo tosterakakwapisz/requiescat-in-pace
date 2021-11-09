@@ -12,12 +12,14 @@ Clears bowel movements of discord server <3
 
 - run `cp default.env .env`
 - paste discord token to copied `.env` file
+- paste discord invite code (not full link!)
 - run `npm i`
 
 ### Windows
 
 - copy `default.env` and rename to `.env`
 - paste discord token to copied `.env` file
+- paste discord invite code (not full link!)
 - run `npm i`
 
 ## Usage
