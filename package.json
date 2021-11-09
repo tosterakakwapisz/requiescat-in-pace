@@ -1,6 +1,6 @@
 {
   "name": "discord-bot",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Clears your bowels immediately <3",
   "main": "index.js",
   "type": "module",

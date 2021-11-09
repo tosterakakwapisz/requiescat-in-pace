@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## 2.0.1
+
+Update code for newer discordjs version
+
+- added discord invite code to env variables
+- added new npm scripts
+- update onMessage -> onMessageCreate
+- updated readme
+- new formatting
+- clear code
+- make use of fetch method to get members, roles etc
+- after trying to send message, ban him anyway (make use of finally in promise)
+- no need to use loop since new fetch method
+
 ## 2.0.0
 
 - use .env instead of json file
