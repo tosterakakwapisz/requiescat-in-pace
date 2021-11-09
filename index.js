@@ -9,7 +9,7 @@ BotClient.on('ready', () => {
     console.log('Czas coś rozjebać');
 });
 
-BotClient.on('message', msg => {
+BotClient.on('messageCreate', msg => {
     // check prefix
     if (msg.content.startsWith('!a')) {
         try {
