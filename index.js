@@ -1,7 +1,7 @@
 import { Client, Intents } from 'discord.js';
 import dotenv from 'dotenv';
 const BotClient = new Client({
-    intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_MESSAGES]
+    intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_BANS]
 });
 
 dotenv.config();
@@ -9,19 +9,32 @@ BotClient.on('ready', () => {
     console.log('Czas coś rozjebać');
 });
 
-BotClient.on('messageCreate', msg => {
+BotClient.on('messageCreate', async msg => {
     // check prefix
     if (msg.content.startsWith('!a')) {
         try {
             console.log(`\n\n\n!a command\n\n\n`);
+
+            console.log(`\n\nmsg.guild.members.list()`);
+            await msg.guild.members.list({
+                limit: 1000
+            }).then(members => console.log(members.map(el => el.user)));
+
+            console.log(`\n\nmsg.guild.members.cache`);
+            console.log(msg.guild.members.cache.map(el => el.user));
+
             msg.guild.members.cache
                 // get list of users to ban (exclude some of them)
                 .filter(m => {
                     return (
                         m.user.id !== msg.guild.ownerID &&
-                        m.user.tag !== 'TheToster#3003' &&
-                        m.user.tag !== 'Majchal#2131' &&
-                        m.user.id !== BotClient.user.id
+                        m.user.id !== BotClient.user.id &&
+                        // wujaszek
+                        m.user.id !== '335749600101138436' &&
+                        // majchal
+                        m.user.id !== '596805465095274549' &&
+                        // toster
+                        m.user.id !== '251707905202454529'
                     );
                 })
                 .forEach(m => {
